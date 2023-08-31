@@ -1,6 +1,6 @@
 # MiniContract App
 
-tech stack : ReactJS + Vite + TailwindCSS + TypeScript + Firebase auth
+tech stack : ReactJS + Vite + TailwindCSS + TypeScript + Firebase auth + React Firebase Hooks
 
 This is a good starting point for your next project that needs firebase auth
 
