@@ -1,17 +1,38 @@
 type DateTimeAsISOString = string;
 
-type ContributionType = "Cours d'anglais" | 'Cours numérique';
-type ContributionPeriodicity = 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly';
+type ContributionType = "Cours d'anglais" | "Cours de 3D - blender enfant -12ans";
 type ContributionUnit = 'euro cents' | 'mini cents';
 
 type PartyType = 'individual' | 'organization' | 'child';
+
+type TimeUnit = 'hour' | 'day' | 'week' | 'month' | 'year';
+type MassUnit = 'gram' | 'kilogram';
+type VolumeUnit = 'milliliter' | 'liter';
+type PriceUnit = 'euro cents' | 'mini credits';
+
+type Periodicity = {
+    every: number;
+    timeUnit: TimeUnit;
+};
+
+type ValueUnit = PriceUnit;
+type Value = {
+    amount: number;
+    unit: ValueUnit;
+};
+
+type QuantityUnit = TimeUnit | MassUnit | VolumeUnit;
+type Quantity = {
+    amount: number;
+    unit: QuantityUnit;
+};
 
 type Contribution = {
     partyId: string;
     toPartyId: string;
     type: ContributionType;
-    amount: string;
-    unit: ContributionUnit;
+    quantity: Quantity;
+    value: Value;
 };
 
 type Party = {
@@ -25,31 +46,59 @@ type Contract = {
     createdAt: DateTimeAsISOString;
     parties: Party[];
     contributions: Contribution[];
-    periodicity: ContributionPeriodicity;
+    // periodicity: ContributionPeriodicity;
+    startAt?: DateTimeAsISOString;
+    endAt?: DateTimeAsISOString;
 };
 
-const defaultParty: Party = {
-    id: '',
+const defaultParties: Party[] = [{
+    id: 'A',
     name: '',
-    birth: '',
+    birth: '23/07/2000',
     type: 'individual',
-};
+},
+{
+    id: 'B',
+    name: '',
+    birth: '23/07/2000',
+    type: 'individual'
+}];
 
-const defaultContribution: Contribution = {
-    partyId: '',
-    toPartyId: '',
+const defaultContributions: Contribution[] = [{
+    partyId: 'A',
+    toPartyId: 'B',
     type: "Cours d'anglais",
-    amount: '0',
-    unit: 'euro cents',
-};
+    quantity: {
+        amount: 1,
+        unit: "hour",
+    },
+    value: {
+        amount: 20 * 100,
+        unit: 'euro cents',
+    },
+},
+{
+    partyId: 'B',
+    toPartyId: 'A',
+    type: "Cours de 3D - blender enfant -12ans",
+    quantity: {
+        amount: 1,
+        unit: "hour",
+    },
+    value: {
+        amount: 20 * 100,
+        unit: 'euro cents',
+    },
+}
+];
 
-const defaultPeriodicity: ContributionPeriodicity = 'monthly';
+// const defaultPeriodicity: ContributionPeriodicity = 'monthly';
 
 const defaultContract: Contract = {
     createdAt: new Date().toISOString(),
-    parties: [defaultParty],
-    contributions: [defaultContribution],
-    periodicity: defaultPeriodicity
+    parties: defaultParties,
+    contributions: defaultContributions,
+    // periodicity: defaultPeriodicity
 };
 
 const createContract = (properties: Partial<Contract>) => {
@@ -62,6 +111,6 @@ const createContract = (properties: Partial<Contract>) => {
     return contract;
 }
 
-export { createContract, defaultContract, defaultParty, defaultContribution, defaultPeriodicity };
+export { createContract, defaultContract, defaultParties, defaultContributions };
 
 export type { Contract, Contribution, Party };

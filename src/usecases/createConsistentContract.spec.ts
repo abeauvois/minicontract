@@ -1,27 +1,20 @@
-import { defaultParty, defaultContribution, Contract } from "../domain/contracts";  // Adjust the import based on your file structure
+import { Contract, defaultContributions, defaultParties } from "../domain/contracts";  // Adjust the import based on your file structure
 import { createConsistentContract } from "./createConsistentContract";
+
 
 describe('createConsistentContract', () => {
 
-    test('should return contract with at least one party', () => {
-        const contract = createConsistentContract({});
-        expect(contract.parties.length).toBeGreaterThanOrEqual(1);
-    });
-
-    test('should return contract with at least one contribution', () => {
-        const contract = createConsistentContract({});
-        expect(contract.contributions.length).toBeGreaterThanOrEqual(1);
+    test('should throw error if less than two parties', () => {
+        expect(() => createConsistentContract({ parties: [defaultParties[0]] })).toThrow('A contract should have at least two parties');
     });
 
     test('each party should provide at least one contribution', () => {
-        const contract = createConsistentContract({
-            parties: [defaultParty, defaultParty]
-        });
-
-        contract.parties.forEach(party => {
-            const contributionsByParty = contract.contributions.filter(c => c.partyId === party.id);
-            expect(contributionsByParty.length).toBeGreaterThanOrEqual(1);
-        });
+        const contract: Contract = {
+            createdAt: new Date().toISOString(),
+            parties: [defaultParties[0], defaultParties[1]],
+            contributions: [defaultContributions[0]]
+        };
+        expect(() => createConsistentContract(contract)).toThrow(/Party B should provide at least one contribution/);
     });
 
 });
