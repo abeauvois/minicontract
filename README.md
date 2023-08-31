@@ -1,4 +1,6 @@
-# ReactJS + Vite + TailwindCSS + TypeScript + Firebase auth
+# MiniContract App
+
+tech stack : ReactJS + Vite + TailwindCSS + TypeScript + Firebase auth
 
 This is a good starting point for your next project that needs firebase auth
 
@@ -8,22 +10,37 @@ This is a good starting point for your next project that needs firebase auth
 <img src="./images/Screenshot_3.png" height="500">
 </div>
 
-# Setup
+# Credits
 
-- Clone the project with 
+- forked from
+
 ```
 git clone https://github.com/IgorBayerl/react-vite-tailwind-firebase-auth-template.git
 ```
+
+# Setup
+
+- forked from
+
+```
+git clone https://github.com/abeauvois/minicontract.git
+```
+
 - Navigate to the directory
+
 ```
-cd react-vite-tailwind-firebase-auth-template
+cd minicontract
 ```
+
 - Install the dependencies with
+
 ```
-yarn
+pnpm
 ```
+
 - Configure the .env file with your firebase credentials
 - run with
+
 ```
-yarn dev
+pnpm dev
 ```
