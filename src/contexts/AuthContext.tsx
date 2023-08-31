@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth } from '../firebase'
+import { auth } from '../auth'
 import {
   GoogleAuthProvider,
   signInWithPopup,
   GithubAuthProvider,
+  // createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
 interface IAuthProviderProps {
@@ -20,9 +21,9 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
   const [currentUser, setCurrentUser] = useState<any>()
   const [loading, setLoading] = useState(true)
 
-  function signup(email: string, password: string): Promise<any> {
-    return auth.createUserWithEmailAndPassword(email, password)
-  }
+  // function signup(email: string, password: string): Promise<any> {
+  //   return createUserWithEmailAndPassword(email, password)
+  // }
 
   function googleSignin(): Promise<any> {
     const provider = new GoogleAuthProvider()
@@ -34,17 +35,17 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
     return signInWithPopup(auth, provider)
   }
 
-  function login(email: string, password: string): Promise<any> {
-    return auth.signInWithEmailAndPassword(email, password)
-  }
+  // function login(email: string, password: string): Promise<any> {
+  //   return auth.signInWithEmailAndPassword(email, password)
+  // }
 
   function logout(): Promise<any> {
     return auth.signOut()
   }
 
-  function resetPassword(email: string): Promise<any> {
-    return auth.sendPasswordResetEmail(email)
-  }
+  // function resetPassword(email: string): Promise<any> {
+  //   return auth.sendPasswordResetEmail(email)
+  // }
 
   function updateEmail(email: string): Promise<any> {
     return currentUser.updateEmail(email)
@@ -65,12 +66,12 @@ export function AuthProvider({ children }: IAuthProviderProps): JSX.Element {
 
   const value = {
     currentUser,
-    login,
-    signup,
+    // login,
+    // signup,
+    // resetPassword,
     googleSignin,
     githubSignin,
     logout,
-    resetPassword,
     updateEmail,
     updatePassword,
   }

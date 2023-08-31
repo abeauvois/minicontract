@@ -1,9 +1,8 @@
 {
-  "name": "client",
+  "name": "minicontract-monorepo",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
-  "homepage": "https://igorbayerl.github.io/chess-two",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -18,6 +17,7 @@
     "firebase": "^9.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.8"
