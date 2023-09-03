@@ -43,6 +43,7 @@ type Party = {
 };
 
 type Contract = {
+    id: string;
     createdAt: DateTimeAsISOString;
     parties: Party[];
     contributions: Contribution[];
@@ -95,11 +96,13 @@ const defaultContributions: Contribution[] = [{
 // const defaultPeriodicity: ContributionPeriodicity = 'monthly';
 
 const defaultContract: Contract = {
+    id: 'contract0',
     createdAt: new Date().toISOString(),
     parties: defaultParties,
     contributions: defaultContributions,
     // periodicity: defaultPeriodicity
 };
+console.log("🚀 ~ file: contracts.ts:105 ~ defaultContract:", defaultContract)
 
 const createContract = (properties: Partial<Contract>) => {
     if (!properties) { return defaultContract; }

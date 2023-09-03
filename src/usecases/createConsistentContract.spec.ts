@@ -10,6 +10,7 @@ describe('createConsistentContract', () => {
 
     test('each party should provide at least one contribution', () => {
         const contract: Contract = {
+            id: 'contract0',
             createdAt: new Date().toISOString(),
             parties: [defaultParties[0], defaultParties[1]],
             contributions: [defaultContributions[0]]

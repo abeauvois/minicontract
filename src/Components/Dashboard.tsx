@@ -1,10 +1,10 @@
-import { ReadList } from "./ReadList";
+import { Contracts } from "./Contracts";
 
 export default function Dashboard() {
   return (
     <>
       <h1>Dashboard</h1>
-      <ReadList />
+      <Contracts />
     </>
   )
 }
